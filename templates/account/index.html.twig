@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} | EasyFit{% endblock %}
+
+{% block body %}
+<div>
+    Bonjour {{ user.firstname }} {{ user.lastname }}
+
+    {{ form(editForm) }}
+</div>
+{% endblock %}
