@@ -33,10 +33,10 @@
         {# Catégories #}
         <div class="hidden order-4 w-full items-center justify-between lg:flex lg:order-2 lg:w-auto" id="mobile-menu">
             <ul class="flex flex-col lg:flex-row gap-4">
-                {% set categories = ['Femmes', 'Hommes', 'Accessoires'] %}
+                {% set categories = getCategories() %}
                 {% for category in categories %}
                     <li>
-                        <a href="#">{{ category}}</a>
+                        <a href="#">{{ category }}</a>
                     </li>
                 {% endfor %}
             </ul>
