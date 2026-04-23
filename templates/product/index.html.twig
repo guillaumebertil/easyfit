@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue {{ category }} | EasyFit{% endblock %}
+
+{% block body %}
+    <div class="flex justify-center">
+        <div class="max-w-4xl flex flex-col items-center">
+            <h1 class="text-4xl">{{ category }}</h1>
+            <p>{{ category.description|raw }}</p>
+        </div>
+    </div>
+
+    {% for product in products %}
+    <a href="{{ path('app_product_show', {categorySlug: category.slug, slug: product.slug}) }}">
+        <div class="max-w-sm">
+            <h2 class="text-xl font-semibold">{{ product.name }}</h2>
+            <img src="{{ product.productImages.first.url }}" alt="{{ product.productImages.first.altText }}">
+            {{ product.price|format_currency('EUR', {rounding_mode: 'floor'}) }}
+        </div>
+    </a>
+    {% endfor %}
+{% endblock %}
