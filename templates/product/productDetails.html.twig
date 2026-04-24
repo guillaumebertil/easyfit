@@ -12,14 +12,34 @@
             <h1 class="text-2xl font-semibold">{{ product.name }}</h1>
             {{ product.price|format_currency('EUR', {rounding_mode: 'floor'}) }}
             <p>{{ product.description|raw }}</p>
-            <p>Tailles disponibles :</p>
-            {% for size in product.size %}
-                <p>{{ size }}</p>
-            {% endfor %}
 
-            {% for color in product.color %}
-                {{ color }}
-            {% endfor %}
+            {# Options #}
+            <form action="{{ path('app_cart_add') }}" method="POST">
+                
+                {# Tailles #}
+                <div>
+                    <label for="size-select">Sélectionnez une taille :</label>
+                    <select name="size" id="size-selector">
+                        <option value="">--Veuillez choisir une taille--</option>
+                        {% for size in product.size %}
+                            <option value="{{ size.id }}">{{ size }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {# Couleurs #}
+                <div>
+                    <label for="color-select">Sélectionnez une couleur :</label>
+                    <select name="color" id="color-selector">
+                        <option value="">--Veuillez choisir une couleur--</option>
+                        {% for color in product.color %}
+                            <option value="{{ color.id }}">{{ color }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <input type="hidden" name="product" value="{{ product.id }}">
+                <button type="submit">Ajouter au panier</button>
+            </form>
             
         </div>
     </div>

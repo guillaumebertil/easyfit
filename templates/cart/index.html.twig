@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier | EasyFit{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Produit</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+        </tr>
+        {% for cartItem in cart.cartItems %}
+            <tr>
+                <td>{{ cartItem.productVariant.product.name }}</td>
+                <td>{{ cartItem.productVariant.size }}</td>
+                <td>{{ cartItem.productVariant.color }}</td>
+                <td>
+                    <form action="{{ path('app_cart_update', {id: cartItem.id}) }}" method="POST">
+                        <button name="action" value="decrease" type="submit">-</button>
+                        {{ cartItem.quantity }}
+                        <button name="action" value="increase" type="submit">+</button>
+                    </form>
+                </td>
+                <td>{{ cartItem.productVariant.product.price|format_currency('EUR') }}</td>
+
+                <td>
+                    <form action="{{ path('app_cart_remove', {id: cartItem.id}) }}" method="POST">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% set total = 0 %}
+    {% for cartItem in cart.cartItems %}
+        {% set total = total + cartItem.productVariant.product.price * cartItem.quantity %}
+    {% endfor %}
+    {{ total|format_currency('EUR') }}
+{% endblock %}
