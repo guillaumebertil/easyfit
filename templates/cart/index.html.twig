@@ -34,6 +34,10 @@
         {% endfor %}
     </table>
 
+    <form action="{{ path('app_order_create') }}" method="POST">
+        <button type="submit">Commander</button>
+    </form>
+
     {% set total = 0 %}
     {% for cartItem in cart.cartItems %}
         {% set total = total + cartItem.productVariant.product.price * cartItem.quantity %}
