@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} | EasyFit{% endblock %}
+
+{% block body %}
+<div>
+    {% for order in orders %}
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Total de la commande</th>
+                <th>Statut</th>
+                <th>Articles</th>
+            </tr>
+            <tr>
+                <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.status.value }}</td>
+                {% for item in order.orderItems %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    {% endfor %}
+</div>
+{% endblock %}

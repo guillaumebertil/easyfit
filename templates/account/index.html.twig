@@ -4,8 +4,13 @@
 
 {% block body %}
 <div>
-    Bonjour {{ user.firstname }} {{ user.lastname }}
+    <div>
+        Bonjour {{ user.firstname }} {{ user.lastname }}
+        {{ form(editForm) }}
+    </div>
 
-    {{ form(editForm) }}
+    <div>
+        <a href="{{ path('app_account_history') }}">Mes commandes passées</a>
+    </div>
 </div>
 {% endblock %}

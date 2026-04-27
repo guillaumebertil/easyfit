@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\EditProfileType;
+use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,19 @@ final class AccountController extends AbstractController
             'title' => 'Compte',
             'user' => $user,
             'editForm' => $form,
+        ]);
+    }
+
+    #[Route('/account/history', name: 'app_account_history')]
+    public function orders(OrderRepository $orderRepository): Response
+    {
+        $user = $this->getUser();
+
+        $orders = $orderRepository->findBy(['user' => $user]);
+
+        return $this->render('account/history.html.twig', [
+            'title' => 'Historiques des commandes',
+            'orders' => $orders,
         ]);
     }
 }

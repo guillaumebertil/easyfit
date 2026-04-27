@@ -83,7 +83,7 @@ class Order
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?OrderStatus
     {
         return $this->status;
     }
