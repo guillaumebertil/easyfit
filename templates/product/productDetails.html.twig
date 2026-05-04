@@ -26,6 +26,7 @@
                         {% endfor %}
                     </select>
                 </div>
+
                 {# Couleurs #}
                 <div>
                     <label for="color-select">Sélectionnez une couleur :</label>
@@ -42,5 +43,16 @@
             </form>
             
         </div>
+    </div>
+
+    <div>
+        <h2 class="text-2xl">Avis</h2>
+
+        {% for review in product.reviews %}
+            {{ review.user.firstname }} - {{ review.rating }}
+            {{ review.comment }}
+        {% endfor %}
+
+        {{ form(form) }}
     </div>
 {% endblock %}
