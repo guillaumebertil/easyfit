@@ -54,6 +54,15 @@ final class CartController extends AbstractController
             'color'   => $color
         ]);
 
+        if (!$productVariant) {
+            $this->addFlash('error', 'Cette combinaison taille\couleur n\'est pas disponible');
+
+            return $this->redirectToRoute('app_product_show', [
+                'categorySlug' => $product->getCategory()->getSlug(),
+                'slug' => $product->getSlug(),
+            ]);
+        }
+
         $user = $this->getUser();
 
         $cart = $cartRepository->findOneBy(['user' => $user]);
@@ -85,7 +94,7 @@ final class CartController extends AbstractController
     }
 
     #[Route('/cart/remove/{id}', name: 'app_cart_remove', methods: ['POST'])]
-    public function remove($id,CartItemRepository $cartItemRepository, EntityManagerInterface $entityManager): Response
+    public function remove(int $id,CartItemRepository $cartItemRepository, EntityManagerInterface $entityManager): Response
     {
         $cartItem = $cartItemRepository->find($id);
 
@@ -96,7 +105,7 @@ final class CartController extends AbstractController
     }
 
     #[Route('/cart/update/{id}', name: 'app_cart_update', methods: ['POST'])]
-    public function update($id, Request $request, CartItemRepository $cartItemRepository, EntityManagerInterface $entityManager): Response
+    public function update(int $id, Request $request, CartItemRepository $cartItemRepository, EntityManagerInterface $entityManager): Response
     {
         $cartItem =$cartItemRepository->find($id);
 
