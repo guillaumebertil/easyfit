@@ -29,6 +29,7 @@ final class ProductController extends AbstractController
             ]);
 
         return $this->render('product/index.html.twig', [
+            'title'    => 'Catalogue',
             'category' => $category,
             'products' => $products,
         ]);
@@ -64,6 +65,7 @@ final class ProductController extends AbstractController
         }
 
         return $this->render('product/productDetails.html.twig', [
+            'title'   => $product,
             'product' => $product,
             'form'    => $form,
         ]);

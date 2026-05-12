@@ -1,22 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue {{ category }} | EasyFit{% endblock %}
+{% block title %}{{ title }} {{ category }} | EasyFit{% endblock %}
 
 {% block body %}
-    <div class="flex justify-center">
-        <div class="max-w-4xl flex flex-col items-center">
-            <h1 class="text-4xl">{{ category }}</h1>
+
+{# Fil d'ariane #}
+<div class="px-4 mb-4">
+    <p><a href="{{ path('app_home') }}">Accueil</a> > <a href="{{ path('app_product', {categorySlug: category.slug}) }}">{{ category }}</a></p>
+</div>
+
+<div class="flex w-full flex-col items-center px-4 py-8">
+
+    {# En-tête de la catégorie #}
+    <div class="text-center max-w-2xl">
+        <h1 class="text-4xl font-semibold">{{ category }}</h1>
+        <div class="mt-4">
             <p>{{ category.description|raw }}</p>
         </div>
     </div>
 
-    {% for product in products %}
-    <a href="{{ path('app_product_show', {categorySlug: category.slug, slug: product.slug}) }}">
-        <div class="max-w-sm">
-            <h2 class="text-xl font-semibold">{{ product.name }}</h2>
-            <img src="{{ product.productImages.first.url }}" alt="{{ product.productImages.first.altText }}">
-            {{ product.price|format_currency('EUR', {rounding_mode: 'floor'}) }}
+    {# Catalogue produits #}
+    <section class="w-full my-8">
+        <h2 class="text-2xl font-bold mb-5">Catalogue {{ category }}</h2>
+        <div class="flex flex-wrap">
+            {% for product in products %}
+                {% include 'partials/_product_card.html.twig' with {'product': product} %}
+            {% endfor %}
         </div>
-    </a>
-    {% endfor %}
+    </section>
+
+</div>
 {% endblock %}

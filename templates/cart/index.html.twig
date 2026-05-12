@@ -3,44 +3,118 @@
 {% block title %}Mon panier | EasyFit{% endblock %}
 
 {% block body %}
-    <table>
-        <tr>
-            <th>Produit</th>
-            <th>Taille</th>
-            <th>Couleur</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-        </tr>
-        {% for cartItem in cart.cartItems %}
-            <tr>
-                <td>{{ cartItem.productVariant.product.name }}</td>
-                <td>{{ cartItem.productVariant.size }}</td>
-                <td>{{ cartItem.productVariant.color }}</td>
-                <td>
-                    <form action="{{ path('app_cart_update', {id: cartItem.id}) }}" method="POST">
-                        <button name="action" value="decrease" type="submit">-</button>
-                        {{ cartItem.quantity }}
-                        <button name="action" value="increase" type="submit">+</button>
-                    </form>
-                </td>
-                <td>{{ cartItem.productVariant.product.price|format_currency('EUR') }}</td>
 
-                <td>
-                    <form action="{{ path('app_cart_remove', {id: cartItem.id}) }}" method="POST">
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+{# Fil d'ariane #}
+<div class="px-4 mb-4">
+    <p><a href="{{ path('app_home') }}">Accueil</a> > <a href="{{ path('app_cart') }}">Panier</a></p>
+</div>
 
-    <form action="{{ path('app_order_create') }}" method="POST">
-        <button type="submit">Commander</button>
-    </form>
+<div class="w-full px-4">
+    <h1 class="text-4xl font-bold mb-4">Votre panier :</h1>
 
-    {% set total = 0 %}
-    {% for cartItem in cart.cartItems %}
-        {% set total = total + cartItem.productVariant.product.price * cartItem.quantity %}
-    {% endfor %}
-    {{ total|format_currency('EUR') }}
+    <div class="w-full flex flex-col lg:flex-row gap-4 lg:gap-x-12">
+
+        {# Articles du panier #}
+        <div class="lg:w-2/3 bg-gray-100 rounded-2xl p-4">
+            {% if cart.cartItems is empty %}
+                <div class="w-full py-8 flex justify-center items-center">
+                    <p>Votre panier est vide.</p>
+                </div>
+            {% else %}
+                {% for cartItem in cart.cartItems %}
+                    <div class="flex items-center my-4">
+
+                        {# Aperçu du produit #}
+                        <div class="w-24 flex-shrink-0">
+                            <img
+                                src="{{ cartItem.productVariant.product.productImages.first.url }}"
+                                alt="{{ cartItem.productVariant.product.productImages.first.altText }}"
+                                class="w-full h-full object-cover rounded-lg"
+                            >
+                        </div>
+
+                        {# Informations et actions sur l'article #}
+                        <div class="w-full ml-4">
+                            <p class="font-semibold">{{ cartItem.productVariant.product.name }}</p>
+                            <p class="text-sm text-gray-600">{{ cartItem.productVariant.size }} — {{ cartItem.productVariant.color }}</p>
+                            <p class="font-bold">{{ cartItem.productVariant.product.price|format_currency('EUR') }}</p>
+
+                            <div class="w-full flex justify-between mt-2">
+
+                                {# Contrôle de la quantité #}
+                                <form action="{{ path('app_cart_update', {id: cartItem.id}) }}" method="POST" class="flex items-center">
+                                    <button name="action" value="decrease" type="submit">-</button>
+                                    <div class="mx-2 bg-gray-200 px-2 rounded-lg">{{ cartItem.quantity }}</div>
+                                    <button name="action" value="increase" type="submit">+</button>
+                                </form>
+
+                                {# Supprimer l'article du panier #}
+                                <form action="{{ path('app_cart_remove', {id: cartItem.id}) }}" method="POST">
+                                    <button type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                        </svg>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {# Récapitulatif de la commande #}
+        <div class="lg:w-1/3 bg-gray-100 rounded-2xl p-8">
+            <h2 class="text-3xl font-bold mb-4">Récapitulatif</h2>
+
+            {# Sous-total #}
+            <div class="flex justify-between text-xl font-semibold my-2">
+                <span>Sous-total :</span>
+                <span>
+                    {% set sousTotal = 0 %}
+                    {% for cartItem in cart.cartItems %}
+                        {% set sousTotal = sousTotal + cartItem.productVariant.product.price * cartItem.quantity %}
+                    {% endfor %}
+                    {{ sousTotal|format_currency('EUR') }}
+                </span>
+            </div>
+
+            {# Frais de livraison #}
+            <div class="flex justify-between text-xl font-semibold my-2">
+                <span>Livraison :</span>
+                <span>
+                    {% set livraison = 0 %}
+                    {% if livraison == 0 %}
+                        <span class="text-green-700">Gratuit</span>
+                    {% else %}
+                        {{ livraison|format_currency('EUR') }}
+                    {% endif %}
+                </span>
+            </div>
+
+            {# Total TTC #}
+            <div class="flex justify-between text-xl font-bold my-2 border-t border-gray-300 pt-2">
+                <span>Total :</span>
+                <span>
+                    {% set total = 0 %}
+                    {% for cartItem in cart.cartItems %}
+                        {% set total = total + cartItem.productVariant.product.price * cartItem.quantity %}
+                    {% endfor %}
+                    {{ (total + livraison)|format_currency('EUR') }}
+                </span>
+            </div>
+
+            {# Validation de la commande #}
+            <form action="{{ path('app_order_create') }}" method="POST" class="mt-4">
+                <button type="submit" class="w-full text-white text-xl font-semibold bg-green-600 px-4 py-2 rounded-full hover:bg-green-700">
+                    Commander
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

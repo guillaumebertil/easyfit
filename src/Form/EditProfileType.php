@@ -41,6 +41,9 @@ class EditProfileType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options'  => [
                     'label' => 'Mot de passe',
+                    'attr' => [
+                        'placeholder' => '******',
+                    ],
                     'constraints' => [
                         new Assert\Length([
                             'min' => 6,
@@ -56,7 +59,10 @@ class EditProfileType extends AbstractType
                     'hash_property_path' => 'password',
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
+                    'label' => 'Confirmation du mot de passe',
+                'attr' => [
+                    'placeholder' => '******',
+                ],
                 ],
                 'mapped' => false,
             ])
