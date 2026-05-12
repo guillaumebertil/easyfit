@@ -3,7 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block meta %}
+            <meta name="description" content="EasyFit - Des vêtements de sport confortables conçus pour bouger avec vous.">
+            <meta name="og:title" content="EasyFit">
+            <meta name="og:description" content="EasyFit - Des vêtements de sport confortables conçus pour bouger avec vous.">
+        {% endblock %}
+
         <title>{% block title %}EasyFit!{% endblock %}</title>
+        
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('styles/app.css')}}">
         {% endblock %}
