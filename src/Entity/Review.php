@@ -6,6 +6,7 @@ use App\Repository\ReviewRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Avis client sur un produit, avec une note de 1 à 5 et un commentaire optionnel. */
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {

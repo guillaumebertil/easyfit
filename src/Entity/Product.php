@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Entité produit avec ses variantes (taille/couleur/stock), ses images et ses avis clients. */
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {

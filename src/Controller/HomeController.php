@@ -8,15 +8,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Affiche la page d'accueil avec les produits mis en avant et les sections femmes/hommes. */
 final class HomeController extends AbstractController
 {
+    /**
+     * Charge les produits mis en avant et les produits par genre pour la page d'accueil.
+     */
     #[Route('/', name: 'app_home')]
     public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
+        // Récupérer les catégories femmes et hommes
         $womenCategory    = $categoryRepository->findOneBy(['name' => 'femmes']);
         $menCategory      = $categoryRepository->findOneBy(['name' => 'hommes']);
 
+        // Récupérer les produits mis en avant (isFeatured = true)
         $featuredProducts = $productRepository->findBy(['isFeatured' => true]);
+
+        // Récupérer les produits actifs pour chaque genre
         $womenProducts    = $productRepository->findBy(['category' => $womenCategory, 'isActive' => true]);
         $menProducts      = $productRepository->findBy(['category' => $menCategory, 'isActive' => true]);
 

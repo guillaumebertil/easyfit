@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Article dans un panier, associant une variante produit (taille + couleur) à une quantité. */
 #[ORM\Entity(repositoryClass: CartItemRepository::class)]
 class CartItem
 {

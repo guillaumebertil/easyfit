@@ -2,6 +2,10 @@
 
 namespace App\Enum;
 
+/**
+ * Statuts possibles d'une commande tout au long de son cycle de vie.
+ * getLabel() retourne le libellé en français pour l'affichage côté client.
+ */
 enum OrderStatus: string
 {
     case PENDING = 'pending';

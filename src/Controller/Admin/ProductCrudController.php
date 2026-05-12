@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la gestion des produits (nom, prix, catégorie, drapeaux isFeatured et isActive). */
 class ProductCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

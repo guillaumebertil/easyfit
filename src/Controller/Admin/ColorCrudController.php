@@ -6,6 +6,7 @@ use App\Entity\Color;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la gestion des couleurs disponibles et leur code hexadécimal. */
 class ColorCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

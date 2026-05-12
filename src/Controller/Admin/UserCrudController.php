@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la gestion des utilisateurs et de leurs rôles (ROLE_ADMIN / ROLE_USER). */
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

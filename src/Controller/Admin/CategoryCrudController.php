@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la gestion des catégories de produits. */
 class CategoryCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

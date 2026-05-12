@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
+/** CRUD EasyAdmin pour la gestion des images associées aux produits. */
 class ProductImageCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

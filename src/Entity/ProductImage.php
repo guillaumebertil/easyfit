@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Image associée à un produit, stockée sous forme d'URL avec un texte alternatif optionnel. */
 #[ORM\Entity(repositoryClass: ProductImageRepository::class)]
 class ProductImage
 {
