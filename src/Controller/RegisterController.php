@@ -10,17 +10,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Gère l'inscription des nouveaux utilisateurs via le formulaire RegisterUserType. */
 final class RegisterController extends AbstractController
 {
+    /**
+     * Affiche le formulaire d'inscription et crée le compte utilisateur s'il est valide.
+     */
     #[Route('/register', name: 'app_register')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
-    {        
+    {
+        // Créer un nouvel utilisateur et le formulaire associé
         $user = new User();
         $form = $this->createForm(RegisterUserType::class, $user);
 
+        // Traiter la requête (lire les données POST soumises)
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Enregistrer le nouvel utilisateur en base de données
             $entityManager->persist($user);
             $entityManager->flush();
 

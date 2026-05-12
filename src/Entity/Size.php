@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Taille vestimentaire disponible (ex. S, M, L, XL), partagée entre plusieurs produits et variantes. */
 #[ORM\Entity(repositoryClass: SizeRepository::class)]
 class Size
 {

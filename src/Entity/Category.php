@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Catégorie de produits (ex. femmes, hommes), identifiée par un slug unique utilisé dans les URLs. */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {

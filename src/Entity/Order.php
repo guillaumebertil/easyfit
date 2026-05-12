@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Commande passée par un client, avec son statut, son total et la liste des articles commandés.
+ * La table est nommée `order` entre guillemets car c'est un mot réservé SQL.
+ */
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 class Order

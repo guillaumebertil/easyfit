@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la modération des avis clients. */
 class ReviewCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

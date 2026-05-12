@@ -6,6 +6,10 @@ use App\Repository\OrderItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Article dans une commande. Le prix est une copie figée au moment de l'achat,
+ * indépendante du prix actuel du produit.
+ */
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
 {

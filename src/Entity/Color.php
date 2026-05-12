@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Couleur disponible avec son code hexadécimal, partagée entre plusieurs produits et variantes. */
 #[ORM\Entity(repositoryClass: ColorRepository::class)]
 class Color
 {

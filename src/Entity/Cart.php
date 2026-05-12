@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/** Panier d'achat lié à un unique utilisateur (relation OneToOne). */
 #[ORM\Entity(repositoryClass: CartRepository::class)]
 class Cart
 {

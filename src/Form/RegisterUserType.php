@@ -14,6 +14,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Formulaire d'inscription d'un nouvel utilisateur.
+ * Le champ plainPassword est haché automatiquement via hash_property_path et écrit dans User::$password.
+ * Contraintes : 6 à 16 caractères, au moins une majuscule, et acceptation des CGV obligatoire.
+ */
 class RegisterUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

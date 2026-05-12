@@ -6,6 +6,7 @@ use App\Entity\Size;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+/** CRUD EasyAdmin pour la gestion des tailles vestimentaires disponibles. */
 class SizeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
