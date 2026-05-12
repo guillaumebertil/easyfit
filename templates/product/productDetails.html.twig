@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block meta %}
+    <meta name="description" content="{{ product.name }} - {{ product.description|striptags|slice(0, 160) }}">
+    <meta name="og:title" content="{{ product.name }} | EasyFit">
+    <meta name="og:description" content="{{ product.description|striptags|slice(0, 160) }}">
+{% endblock %}
+
 {% block title %}{{ title }} | EasyFit{% endblock %}
 
 {% block body %}
