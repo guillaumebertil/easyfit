@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -40,6 +41,9 @@ class RegisterUserType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options'  => [
                     'label' => 'Mot de passe',
+                    'attr' => [
+                        'placeholder' => '******',
+                    ],
                     'constraints' => [
                         new Assert\NotBlank(),
                         new Assert\Length([
@@ -56,12 +60,22 @@ class RegisterUserType extends AbstractType
                     'hash_property_path' => 'password',
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
+                    'label' => 'Confirmation du mot de passe',
+                'attr' => [
+                    'placeholder' => '******',
+                ],
                 ],
                 'mapped' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer un compte'
+            ])
+            ->add('cgv', CheckboxType::class, [
+                'label' => 'J\'accepte les conditions générales de vente',
+                'mapped' => false,
+                'constraints' => [
+                    new Assert\IsTrue(),
+                ]
             ])
         ;
     }

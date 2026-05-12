@@ -1,0 +1,35 @@
+{# Product Card #}
+<div class="w-[50%] lg:w-[25%] px-1">
+    <a href="{{ path('app_product_show', { categorySlug: product.category.slug, slug: product.slug }) }}">
+        {# Image #}
+        <div class="overflow-hidden">
+            <img
+                src="{{ product.productImages.first.url }}"
+                alt="{{ product.description }}"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-120"
+            >
+        </div>
+        {# Details #}
+        <div>
+            {# Nom du produit #}
+            <p class="text-lg font-semibold">{{ product.name }}</p>
+
+            <div>
+                {# Couleurs #}
+                <div class="flex gap-2">
+                    {% for color in product.color %}
+                        <span
+                            class="inline-block w-4 h-4 rounded-full border border-gray-300 shadow-sm"
+                            style="background-color: {{ color.hexCode }};"
+                        >
+                        </span>
+                    {% endfor %}
+                </div>
+                
+                {# Prix #}
+                <p class="font-bold text-lg">{{ product.price|format_currency('EUR', {rounding_mode: 'floor'}) }}</p>
+            </div>
+        </div>
+    </a>
+
+</div>

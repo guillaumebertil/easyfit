@@ -3,10 +3,59 @@
 {% block title %}{{ title }} | EasyFit{% endblock %}
 
 {% block body %}
-    <div class="flex flex-row justify-center items-center">
-        <div>
-            <h1 class="text-4xl font-semibold">Inscription</h1>
-            {{ form(registerForm) }}
+    <div class="w-full flex justify-center items-center">
+        <div class="flex justify-center items-center py-8">
+            <div class="w-full max-w-md border rounded-2xl p-8 bg-white">
+                {# Inscription #}
+                <h1 class="text-4xl font-semibold text-center">Inscription</h1>
+                {{ form_start(registerForm) }}
+                    {# Prénom #}
+                    <div class="mb-4">
+                        {{ form_label(registerForm.firstname, 'Prénom', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                        {{ form_widget(registerForm.firstname, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                        {{ form_errors(registerForm.firstname, {'attr': {'class': 'text-red-600 text-sm'}}) }}
+                    </div>
+
+                    {# Nom #}
+                    <div class="mb-4">
+                        {{ form_label(registerForm.lastname, 'Nom', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                        {{ form_widget(registerForm.lastname, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                        {{ form_errors(registerForm.lastname) }}
+                    </div>
+
+                    {# Email #}
+                    <div class="mb-4">
+                        {{ form_label(registerForm.email, 'Email', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                        {{ form_widget(registerForm.email, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                        {{ form_errors(registerForm.email) }}
+                    </div>
+
+                    {# Mot de passe #}
+                    <div class="mb-4">
+                        {{ form_label(registerForm.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                        {{ form_widget(registerForm.plainPassword.first, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                        {{ form_errors(registerForm.plainPassword.first) }}
+                    </div>
+
+                    {# Confirmation du mot de passe #}
+                    <div class="mb-4">
+                        {{ form_label(registerForm.plainPassword.second, 'Confirmation du mot de passe', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                        {{ form_widget(registerForm.plainPassword.second, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                        {{ form_errors(registerForm.plainPassword.second) }}
+                    </div>
+
+                    {# Validations des CGV #}
+                    <div class="mb-4">
+                        {{ form_widget(registerForm.cgv) }}
+                        <label for="register_form_cgv">J'accepte les <a href="{{ path('app_cgv') }}" class="font-semibold">conditions générales de vente</a></label>
+                        {{ form_errors(registerForm.cgv) }}
+                    </div>
+        
+                    {# Bouton créer un compte #}
+                    {{ form_widget(registerForm.submit, {'attr': {'class': 'w-full text-white bg-green-600 px-4 py-2 rounded-full hover:bg-green-700'}}) }}
+                    <p class="text-sm text-center mt-4">Déjà un compte ? <a href="{{ path('app_login') }}" class="font-bold hover:underline">Se connecter</a></p>
+                {{ form_end(registerForm) }}
+            </div>
         </div>
     </div>
 {% endblock %}

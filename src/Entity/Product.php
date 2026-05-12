@@ -308,4 +308,34 @@ class Product
 
         return $this;
     }
+
+    /**
+     * Calcule la note moyenne des avis
+     * 
+     * @return float La moyenne (0 si aucun avis)
+     */
+    public function getAverageRating(): float
+    {
+        if ($this->reviews->isEmpty()) {
+            return 0;
+        }
+
+        $total = 0;
+
+        foreach ($this->reviews as $review) {
+            $total += $review->getRating();
+        }
+
+        return $total / count($this->reviews);
+    }
+
+    /**
+     * Renvoie le nombre d'avis sur un produit
+     * 
+     * @return int Nombre d'avis
+     */
+    public function getReviewsCount(): int
+    {
+        return $this->reviews->count();
+    }
 }

@@ -16,6 +16,17 @@ final class AccountController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        
+        return $this->render('account/index.html.twig', [
+            'title' => 'Mon compte',
+            'user' => $user,
+        ]);
+    }
+
+    #[Route('/account/edit', name: 'app_account_edit')]
+    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
         $form = $this->createForm(EditProfileType::class, $user);
 
         $form->handleRequest($request);
@@ -25,8 +36,8 @@ final class AccountController extends AbstractController
 
             return $this->redirectToRoute('app_account');
         }
-        
-        return $this->render('account/index.html.twig', [
+
+        return $this->render('account/edit_profil.html.twig', [
             'title' => 'Compte',
             'user' => $user,
             'editForm' => $form,
