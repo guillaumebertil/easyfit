@@ -52,7 +52,7 @@
                     </div>
         
                     {# Bouton créer un compte #}
-                    {{ form_widget(registerForm.submit, {'attr': {'class': 'w-full text-white bg-green-600 px-4 py-2 rounded-full hover:bg-green-700'}}) }}
+                    {{ form_widget(registerForm.submit, {'attr': {'class': 'w-full text-white bg-primary px-4 py-2 rounded-full hover:bg-accent'}}) }}
                     <p class="text-sm text-center mt-4">Déjà un compte ? <a href="{{ path('app_login') }}" class="font-bold hover:underline">Se connecter</a></p>
                 {{ form_end(registerForm) }}
             </div>
