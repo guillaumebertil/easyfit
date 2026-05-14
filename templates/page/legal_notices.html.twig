@@ -3,7 +3,58 @@
 {% block title %}{{ title }} | EasyFit{% endblock %}
 
 {% block body %}
-<div>
-    <h1 class="text-4xl font-semibold">{{ title }}</h1>
+{# Fil d'ariane #}
+<div class="px-4 mb-4">
+    <p><a href="{{ path('app_home') }}">&lt; Retour</a></p>
+</div>
+
+<div class="flex flex-col items-center w-full px-4 py-8">
+    {# En-tête #}
+    <div class="max-w-2xl mb-8">
+        <h1 class="text-4xl text-center font-semibold">{{ title }}</h1>
+    </div>
+
+    {# Editeur du site #}
+    <section class="w-full mb-4">
+        <h2 class="text-2xl font-semibold">Éditeur du site</h2>
+        <p>
+            EasyFit est un projet personnel réalisé dans le cadre d'une formation.<br />
+            Responsable de la publication : Guillaume Bertil<br />
+            Email : <a href="mailto:contact@easyfit.fr" class="underline">contact@easyfit.fr</a>
+        </p>
+    </section>
+
+    {# Hébergement #}
+    <section class="w-full mb-4">
+        <h2 class="text-2xl font-semibold">Hébergement</h2>
+        <p>
+            En environnement de développement, le site est hébergé localement via XAMPP.<br />
+            En production, l'hébergement sera assuré par un prestataire tiers.
+        </p>
+    </section>
+
+    {# Propriété intellectuelle #}
+    <section class="w-full mb-4">
+        <h2 class="text-2xl font-semibold">Propriété intellectuelle</h2>
+        <p>
+            L'ensemble du contenu de ce site (textes, code) est la propriété
+            exclusive d'EasyFit. Toute reproduction sans autorisation est interdite.<br />
+            Les images de produits utilisées sur ce site ont été générées par 
+            intelligence artificielle (Google Gemini) à des fins de démonstration 
+            dans le cadre d'un projet de formation.<br />
+            Elles ne représentent pas 
+            de produits réels commercialisés.
+        </p>
+    </section>
+
+    {# Données personnelles #}
+    <section class="w-full">
+        <h2 class="text-2xl font-semibold">Données personnelles</h2>
+        <p>
+            Conformément au RGPD, vous disposez d'un droit d'accès, de rectification
+            et de suppression de vos données. Pour exercer ce droit, contactez-nous
+            à l'adresse : <a href="mailto:contact@easyfit.fr" class="underline">contact@easyfit.fr</a>
+        </p>
+    </section>
 </div>
 {% endblock %}
