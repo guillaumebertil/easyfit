@@ -3,7 +3,20 @@
 {% block title %}{{ title }} | EasyFit{% endblock %}
 
 {% block body %}
-<div>
-    <h1 class="text-4xl font-semibold">{{ title }}</h1>
+<div class="px-4 mb-4">
+    <p><a href="{{ path('app_home') }}">&lt; Retour</a></p>
+</div>
+
+<div class="flex flex-col items-center w-full px-4 py-8">
+    <div class="max-w-2xl mb-8">
+        <h1 class="text-4xl text-center font-semibold">{{ title }}</h1>
+    </div>
+
+    <section class="w-full">
+        <p>
+            Pour nous contacter : 
+            <a href="mailto:contact@easyfit.fr" class="underline">contact@easyfit.fr</a>
+        </p>
+    </section>
 </div>
 {% endblock %}
