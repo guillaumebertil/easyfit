@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #16A31A;
+  --color-secondary: #111827;
+  --color-accent: #15803D;
+  --color-surface: #F9FAFB;
+  --color-text-main: #374151;
+  --font-sans: "Inter", sans-serif;
+}
+
 button {
     cursor: pointer;
 }

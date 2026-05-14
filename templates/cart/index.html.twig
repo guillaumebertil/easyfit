@@ -36,7 +36,7 @@
                         {# Informations et actions sur l'article #}
                         <div class="w-full ml-4">
                             <p class="font-semibold">{{ cartItem.productVariant.product.name }}</p>
-                            <p class="text-sm text-gray-600">{{ cartItem.productVariant.size }} — {{ cartItem.productVariant.color }}</p>
+                            <p class="text-sm text-text-main">{{ cartItem.productVariant.size }} — {{ cartItem.productVariant.color }}</p>
                             <p class="font-bold">{{ cartItem.productVariant.product.price|format_currency('EUR') }}</p>
 
                             <div class="w-full flex justify-between mt-2">
@@ -87,7 +87,7 @@
                 <span>
                     {% set livraison = 0 %}
                     {% if livraison == 0 %}
-                        <span class="text-green-700">Gratuit</span>
+                        <span class="text-primary">Gratuit</span>
                     {% else %}
                         {{ livraison|format_currency('EUR') }}
                     {% endif %}
@@ -108,7 +108,7 @@
 
             {# Validation de la commande #}
             <form action="{{ path('app_order_create') }}" method="POST" class="mt-4">
-                <button type="submit" class="w-full text-white text-xl font-semibold bg-green-600 px-4 py-2 rounded-full hover:bg-green-700">
+                <button type="submit" class="w-full text-white text-xl font-semibold bg-primary px-4 py-2 rounded-full hover:bg-accent">
                     Commander
                 </button>
             </form>
