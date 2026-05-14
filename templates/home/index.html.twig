@@ -10,7 +10,7 @@
         {# Produits tendances #}
         <section class="px-4 my-8">
             <h2 class="text-2xl font-bold mb-5">Tendances du moment</h2>
-            <div class="flex flex-wrap">
+            <div class="grid grid-cols-2 lg:grid-cols-4">
                 {% for product in featuredProducts %}
                     {% include 'partials/_product_card.html.twig' with{'product': product} %}
                 {% endfor %}
@@ -20,7 +20,7 @@
         {# Catalogue femme #}
         <section class="px-4 my-8">
             <h2 class="text-2xl font-bold mb-5"><a href="{{ path('app_product', {categorySlug: womenCategory.slug }) }}">Catalogue femme</a></h2>
-            <div class="flex flex-wrap">
+            <div class="grid grid-cols-2 lg:grid-cols-4">
                 {% for product in womenProducts %}
                     {% include 'partials/_product_card.html.twig' with{'product': product} %}
                 {% endfor %}
@@ -30,7 +30,7 @@
         {# Catalogue homme #}
         <section class="px-4 my-8">
             <h2 class="text-2xl font-bold mb-5"><a href="{{ path('app_product', {categorySlug: menCategory.slug }) }}">Catalogue homme</a></h2>
-            <div class="flex flex-wrap">
+            <div class="grid grid-cols-2 lg:grid-cols-4">
                 {% for product in menProducts %}
                     {% include 'partials/_product_card.html.twig' with{'product': product} %}
                 {% endfor %}
