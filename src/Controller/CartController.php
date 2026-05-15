@@ -27,7 +27,7 @@ final class CartController extends AbstractController
         $user = $this->getUser();
 
         // Récupérer son panier
-        $cart = $cartRepository->findOneBy(['user' => $user]);
+        $cart = $cartRepository->findByUser($user);
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
@@ -80,7 +80,7 @@ final class CartController extends AbstractController
         $user = $this->getUser();
 
         // Récupérer ou créer le panier de l'utilisateur
-        $cart = $cartRepository->findOneBy(['user' => $user]);
+        $cart = $cartRepository->findByUser($user);
 
         if (!$cart) {
             $cart = new Cart();

@@ -22,11 +22,11 @@ final class HomeController extends AbstractController
         $menCategory      = $categoryRepository->findOneBy(['name' => 'hommes']);
 
         // Récupérer les produits mis en avant (isFeatured = true)
-        $featuredProducts = $productRepository->findBy(['isFeatured' => true]);
+        $featuredProducts = $productRepository->findFeatured();
 
         // Récupérer les produits actifs pour chaque genre
-        $womenProducts    = $productRepository->findBy(['category' => $womenCategory, 'isActive' => true]);
-        $menProducts      = $productRepository->findBy(['category' => $menCategory, 'isActive' => true]);
+        $womenProducts    = $productRepository->findActiveByCategory($womenCategory);
+        $menProducts      = $productRepository->findActiveByCategory($menCategory);
 
         return $this->render('home/index.html.twig', [
             'title' => 'Vêtements de sport',

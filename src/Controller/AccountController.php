@@ -15,7 +15,7 @@ final class AccountController extends AbstractController
 {
     /** Affiche la page de profil de l'utilisateur connecté. */
     #[Route('/account', name: 'app_account')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
@@ -63,7 +63,7 @@ final class AccountController extends AbstractController
         $user = $this->getUser();
 
         // Récupérer toutes ses commandes
-        $orders = $orderRepository->findBy(['user' => $user]);
+        $orders = $orderRepository->findByUser($user);
 
         return $this->render('account/history.html.twig', [
             'title' => 'Historiques des commandes',

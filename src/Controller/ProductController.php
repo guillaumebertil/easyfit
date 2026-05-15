@@ -28,10 +28,7 @@ final class ProductController extends AbstractController
         }
 
         // Récupérer uniquement les produits actifs de cette catégorie
-        $products = $productRepository->findBy([
-                'isActive' => true,
-                'category' => $category,
-            ]);
+        $products = $productRepository->findActiveByCategory($category);
 
         return $this->render('product/index.html.twig', [
             'title'    => 'Catalogue',
