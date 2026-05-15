@@ -15,13 +15,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class OrderController extends AbstractController
 {
     #[Route('/order/create', name: 'app_order_create', methods: ['POST'])]
-    public function create(CartRepository $cartRepository, EntityManagerInterface $entityManger): Response
+    public function create(CartRepository $cartRepository, EntityManagerInterface $entityManager): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
         // Récupérer son panier
-        $cart = $cartRepository->findOneBy(['user' => $user]);
+        $cart = $cartRepository->findByUser($user);
 
         // Créer une nouvelle Order
         $order = new Order();
@@ -38,7 +38,7 @@ final class OrderController extends AbstractController
         // Passer le statut à "pending"
         $order->setStatus(OrderStatus::PENDING);
 
-        $entityManger->persist($order);
+        $entityManager->persist($order);
 
         // Créer un OrderItem pour chaque CartItem
         foreach ($cart->getCartItems() as $cartItem) {
@@ -48,11 +48,11 @@ final class OrderController extends AbstractController
             $orderItem->setQuantity($cartItem->getQuantity());
             $orderItem->setPrice($cartItem->getProductVariant()->getProduct()->getPrice());
 
-            $entityManger->persist($orderItem);
-            $entityManger->remove($cartItem);
+            $entityManager->persist($orderItem);
+            $entityManager->remove($cartItem);
         }
 
-        $entityManger->flush();
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_order_confirm');
     }
