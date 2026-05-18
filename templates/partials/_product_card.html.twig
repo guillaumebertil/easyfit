@@ -17,11 +17,13 @@
             <div>
                 {# Couleurs #}
                 <div class="flex gap-2">
-                    <span
-                        class="inline-block w-4 h-4 rounded-full border border-gray-300 shadow-sm"
-                        style="background-color: {{ product.color.hexCode }};"
-                    >
-                    </span>
+                    {% for color in product.color %}
+                        <span
+                            class="inline-block w-4 h-4 rounded-full border border-gray-300 shadow-sm"
+                            style="background-color: {{ color.hexCode }};"
+                        >
+                        </span>
+                    {% endfor %}
                 </div>
                 
                 {# Prix #}
