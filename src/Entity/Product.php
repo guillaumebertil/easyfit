@@ -54,19 +54,19 @@ class Product
     /**
      * @var Collection<int, ProductImage>
      */
-    #[ORM\OneToMany(targetEntity: ProductImage::class, mappedBy: 'product')]
+    #[ORM\OneToMany(targetEntity: ProductImage::class, mappedBy: 'product', cascade: ['remove'])]
     private Collection $productImages;
 
     /**
      * @var Collection<int, ProductVariant>
      */
-    #[ORM\OneToMany(targetEntity: ProductVariant::class, mappedBy: 'product')]
+    #[ORM\OneToMany(targetEntity: ProductVariant::class, mappedBy: 'product', cascade: ['remove'])]
     private Collection $productVariants;
 
     /**
      * @var Collection<int, Review>
      */
-    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'product')]
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'product', cascade: ['remove'])]
     private Collection $reviews;
 
     public function __construct()

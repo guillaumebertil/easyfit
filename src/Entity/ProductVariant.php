@@ -34,13 +34,13 @@ class ProductVariant
     /**
      * @var Collection<int, CartItem>
      */
-    #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'productVariant')]
+    #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'productVariant', cascade: ['remove'])]
     private Collection $cartItems;
 
     /**
      * @var Collection<int, OrderItem>
      */
-    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'productVariant')]
+    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'productVariant', cascade: ['remove'])]
     private Collection $orderItems;
 
     public function __construct()
