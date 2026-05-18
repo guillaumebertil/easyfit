@@ -46,10 +46,10 @@ class Product
     private Collection $size;
 
     /**
-     * @var Collection<int, Color>
+     * @var ?Color La couleur du produit
      */
-    #[ORM\ManyToMany(targetEntity: Color::class, inversedBy: 'products')]
-    private Collection $color;
+    #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
+    private ?Color $color = null;
 
     /**
      * @var Collection<int, ProductImage>
@@ -72,7 +72,6 @@ class Product
     public function __construct()
     {
         $this->size = new ArrayCollection();
-        $this->color = new ArrayCollection();
         $this->productImages = new ArrayCollection();
         $this->productVariants = new ArrayCollection();
         $this->reviews = new ArrayCollection();
@@ -192,25 +191,16 @@ class Product
     }
 
     /**
-     * @return Collection<int, Color>
+     * @return ?Color La couleur du produit
      */
-    public function getColor(): Collection
+    public function getColor(): ?Color
     {
         return $this->color;
     }
 
-    public function addColor(Color $color): static
+    public function setColor(?Color $color): static
     {
-        if (!$this->color->contains($color)) {
-            $this->color->add($color);
-        }
-
-        return $this;
-    }
-
-    public function removeColor(Color $color): static
-    {
-        $this->color->removeElement($color);
+        $this->color = $color;
 
         return $this;
     }
