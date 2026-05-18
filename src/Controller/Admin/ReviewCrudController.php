@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Review;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -15,6 +16,13 @@ class ReviewCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Review::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Avis')
+            ->setEntityLabelInPlural('Avis');
     }
 
     public function configureFields(string $pageName): iterable

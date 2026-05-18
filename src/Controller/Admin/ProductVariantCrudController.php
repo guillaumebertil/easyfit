@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ProductVariant;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -13,6 +14,13 @@ class ProductVariantCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return ProductVariant::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Déclinaison')
+            ->setEntityLabelInPlural('Déclinaisons');
     }
 
     public function configureFields(string $pageName): iterable
