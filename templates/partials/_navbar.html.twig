@@ -142,31 +142,44 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.getElementById('burger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        (function () {
+            const menuBtn = document.getElementById('burger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        const closeMenu = () => {
-            mobileMenu.classList.add('hidden');
-            menuBtn.setAttribute('aria-expanded', false);
-        };
+            if (!menuBtn || !mobileMenu) return;
 
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('hidden');
-            const isOpen = !mobileMenu.classList.contains('hidden');
-            menuBtn.setAttribute('aria-expanded', isOpen);
-        });
+            const closeMenu = () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            };
 
-        mobileMenu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                } else {
+                    closeMenu();
+                }
+                menuBtn.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden')));
+            });
 
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+            mobileMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
 
-        document.addEventListener('click', closeMenu);
-    });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Nettoie le listener précédent pour éviter les doublons lors des navigations Turbo
+            if (window._navbarDocClickListener) {
+                document.removeEventListener('click', window._navbarDocClickListener);
+            }
+            window._navbarDocClickListener = closeMenu;
+            document.addEventListener('click', closeMenu);
+        })();
     </script>
 </nav>
