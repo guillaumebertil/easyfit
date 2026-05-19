@@ -27,7 +27,6 @@ Application e-commerce de vêtements de sport, développée avec Symfony 7.4 dan
 | Admin | EasyAdmin Bundle 5.0 |
 | Templates | Twig 3.0 |
 | CSS | Tailwind CSS |
-| Assets | Symfony Asset Mapper |
 
 ---
 
@@ -118,9 +117,6 @@ php bin/console make:migration
 # Appliquer les migrations
 php bin/console doctrine:migrations:migrate
 
-# Lancer les tests
-php bin/phpunit
-
 # Lister les routes
 php bin/console debug:router
 ```
@@ -143,7 +139,6 @@ easyfit/
 │   ├── Enum/            # Énumérations (statut de commande)
 │   └── Twig/            # Extensions Twig
 ├── templates/           # Templates Twig
-├── tests/               # Tests PHPUnit
 ├── .env                 # Variables d'environnement (ne pas committer les secrets)
 ├── composer.json
 └── tailwind.config.js
