@@ -28,8 +28,6 @@ Application e-commerce de vêtements de sport, développée avec Symfony 7.4 dan
 | Templates | Twig 3.0 |
 | CSS | Tailwind CSS |
 | Assets | Symfony Asset Mapper |
-| JS | Stimulus, Turbo |
-| Tests | PHPUnit 13.1 |
 
 ---
 
@@ -37,7 +35,6 @@ Application e-commerce de vêtements de sport, développée avec Symfony 7.4 dan
 
 - PHP >= 8.2
 - Composer
-- Node.js + npm
 - MySQL ou MariaDB
 - Symfony CLI (optionnel mais recommandé)
 
