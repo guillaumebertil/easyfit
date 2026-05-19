@@ -50,6 +50,11 @@
 
         {# Compte #}
         <div class="flex order-3 justify-end gap-4">
+            {# Dashboard #}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}" class="text-red-500 font-semibold">Dashboard</a>
+            {% endif %}
+            
             {# User #}
             {% if app.user %}
                 <a href="{{ path('app_account') }}">
