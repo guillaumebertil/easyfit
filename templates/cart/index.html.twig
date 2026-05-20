@@ -16,7 +16,7 @@
 
         {# Articles du panier #}
         <div class="lg:w-2/3 bg-gray-100 rounded-2xl p-4">
-            {% if cart.cartItems is empty %}
+            {% if cart is null or cart.cartItems is empty %}
                 <div class="w-full py-8 flex justify-center items-center">
                     <p>Votre panier est vide.</p>
                 </div>
