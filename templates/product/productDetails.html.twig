@@ -125,26 +125,33 @@
 
             {# Formulaire de dépôt d'avis #}
             <div class="flex justify-center items-center py-8 lg:w-1/2">
-                <div class="w-full max-w-md border rounded-2xl p-8 bg-white">
-                    <h2 class="text-2xl font-semibold text-center mb-4">Donner son avis</h2>
-                    {{ form_start(form) }}
+                {% if app.user %}
+                    <div class="w-full max-w-md border rounded-2xl p-8 bg-white">
+                        <h2 class="text-2xl font-semibold text-center mb-4">Donner son avis</h2>
+                        {{ form_start(form) }}
 
-                        {# Note #}
-                        <div class="mb-4">
-                            {{ form_label(form.rating, 'Note', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
-                            {{ form_widget(form.rating, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                            {# Note #}
+                            <div class="mb-4">
+                                {{ form_label(form.rating, 'Note', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                                {{ form_widget(form.rating, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                            </div>
+
+                            {# Commentaire #}
+                            <div class="mb-4">
+                                {{ form_label(form.comment, 'Votre avis', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
+                                {{ form_widget(form.comment, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
+                            </div>
+
+                            {{ form_widget(form.submit, {'attr': {'class': 'w-full text-white bg-primary px-4 py-2 rounded-full hover:bg-accent'}}) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                    {% else %}
+                        <div class="w-full max-w-md border rounded-2xl p-8 bg-white text-center">
+                            <p class="text-gray-600">Connectez-vous pour laisser un avis.</p>
+                            <a href="{{ path('app_login') }}" class="mt-4 inline-block text-white bg-primary px-4 py-2 rounded-full hover:bg-accent">Se connecter</a>
                         </div>
-
-                        {# Commentaire #}
-                        <div class="mb-4">
-                            {{ form_label(form.comment, 'Votre avis', {'label_attr': {'class': 'text-xl font-semibold'}}) }}
-                            {{ form_widget(form.comment, {'attr': {'class': 'w-full bg-gray-100 rounded-lg px-3 py-1'}}) }}
-                        </div>
-
-                        {{ form_widget(form.submit, {'attr': {'class': 'w-full text-white bg-primary px-4 py-2 rounded-full hover:bg-accent'}}) }}
-
-                    {{ form_end(form) }}
-                </div>
+                {% endif %}
             </div>
 
         </div>
